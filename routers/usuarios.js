@@ -3,20 +3,22 @@ const router = express.Router();
 const UsuarioController = require("../controllers/usuarios");
 const usuarioController = new UsuarioController();
 
-
-router.get("/home", (req, res) => usuarioController.home(req, res));
+// Ruta para la página principal que redirige a /home
+router.get("/", (req, res) => {
+    res.redirect("/home");
+});
 
 router.get("/home", (req, res) => {
     const nombreUsuario = req.session.usuario ? req.session.usuario.nombre : null;
-    console.log("Nombre del usuario en sesión:", nombreUsuario); 
+    console.log("Nombre del usuario en sesión:", nombreUsuario);
     res.render("index", { nombreUsuario });
 });
 
-
 router.post("/registro", (req, res) => usuarioController.guardarUsuario(req, res));
+
 router.get("/login",(req,res)=>{
-    res.render("login")
-})
+    res.render("login");
+});
 
 router.get("/logout", (req, res) => {
     req.session.destroy((err) => {
@@ -28,8 +30,9 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/registro",(req,res)=>{
-    res.render("crearcuenta")
-})
+    res.render("crearcuenta");
+});
+
 router.post("/login", (req, res) => usuarioController.loginUsuario(req, res));
 
 module.exports = router;
