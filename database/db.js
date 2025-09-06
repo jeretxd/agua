@@ -1,16 +1,20 @@
-const mysql = require("mysql")
-//crear conexion
+const mysql = require("mysql");
+
+// Crear conexión con Clever Cloud
 const conx = mysql.createConnection({
-    "host": "localhost",
-    "user": "root",
-    "password": "",
-    "database": "aguaupsala"
-})
-conx.connect((error)=>{
-   if(error){
-    console.log(error)
-    return;
+    host: "bmrx7x18khedmw427i8z-mysql.services.clever-cloud.com",
+    user: "utfvpjullb8eukgt",
+    password: "oKxMtve8Ipax7uJuPj6K", // 👈 tu contraseña real de Clever Cloud
+    database: "bmrx7x18khedmw427i8z",
+    port: 3306
+});
+
+conx.connect((error) => {
+   if (error) {
+      console.log("❌ Error al conectar:", error);
+      return;
    }
-   console.log("conectado")
-})
+   console.log("✅ Conectado a MySQL en Clever Cloud");
+});
+
 module.exports = conx;
