@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 // Crear conexión con Clever Cloud
 const conx = mysql.createConnection({
